@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.web.data.DataGenerator;
-
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -19,7 +18,7 @@ class CardDeliveryTest {
 
     @Test
     void happyPath() {
-        $("[data-test-id=city] input").setValue(DataGenerator.DataApplication.generateClient("ru").getCity());
+        $("[data-test-id=city] input").setValue(String.valueOf(DataGenerator.generateCity()));
         $("[data-test-id=date] [value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         $("[data-test-id=date] [value]").setValue(DataGenerator.generateData());
         $("[name='name']").setValue(DataGenerator.DataApplication.generateClient("ru").getName());
@@ -31,7 +30,7 @@ class CardDeliveryTest {
 
     @Test
     void ifFillOutFormAgainWithChangedDay() {
-        $("[data-test-id=city] input").setValue(DataGenerator.DataApplication.generateClient("ru").getCity());
+        $("[data-test-id=city] input").setValue(String.valueOf(DataGenerator.generateCity()));
         $("[data-test-id=date] [value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         $("[data-test-id=date] [value]").setValue(DataGenerator.generateData());
         $("[name='name']").setValue(DataGenerator.DataApplication.generateClient("ru").getName());
@@ -49,7 +48,7 @@ class CardDeliveryTest {
 
     @Test
     void ifFillOutFormAgainWithoutChangeDay() {
-        $("[data-test-id=city] input").setValue(DataGenerator.DataApplication.generateClient("ru").getCity());
+        $("[data-test-id=city] input").setValue(String.valueOf(DataGenerator.generateCity()));
         $("[data-test-id=date] [value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         $("[data-test-id=date] [value]").setValue(DataGenerator.generateData());
         $("[name='name']").setValue(DataGenerator.DataApplication.generateClient("ru").getName());
