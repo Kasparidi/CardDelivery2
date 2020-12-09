@@ -1,28 +1,35 @@
 package ru.netology.web.data;
 
 import com.github.javafaker.Faker;
-import lombok.Value;
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+@Data
 public class DataGenerator {
+    private DataGenerator() {}
 
-    @Value
+
+
     public static class DataApplication {
-        private String changedData = LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        private DataApplication() {}
 
-        Faker faker = new Faker(new Locale("ru"));
-        private String city = faker.address().city();
-        private String name = faker.name().fullName();
-        private String phoneNumber = faker.phoneNumber().phoneNumber();
-
-        private String data = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-
-
-
-
-
+        public static InfoClient generateClient(String locale) {
+            Faker faker = new Faker(new Locale("ru"));
+            return new InfoClient(
+                    faker.address().city(),
+                    faker.name().lastName() + " " + faker.name().firstName(),
+                    faker.phoneNumber().phoneNumber()
+                    );
+        }
+    }
+    public static String generateData() {
+        return LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
+    public static String anotherData() {
+        return LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
 }

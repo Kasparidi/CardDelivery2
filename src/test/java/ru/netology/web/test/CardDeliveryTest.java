@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.web.data.DataGenerator;
-import ru.netology.web.page.InfoClient;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
@@ -20,26 +19,46 @@ class CardDeliveryTest {
 
     @Test
     void happyPath() {
-        InfoClient.validValue();
+        $("[data-test-id=city] input").setValue(DataGenerator.DataApplication.generateClient("ru").getCity());
+        $("[data-test-id=date] [value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+        $("[data-test-id=date] [value]").setValue(DataGenerator.generateData());
+        $("[name='name']").setValue(DataGenerator.DataApplication.generateClient("ru").getName());
+        $("[name='phone']").setValue(DataGenerator.DataApplication.generateClient("ru").getPhoneNumber());
+        $("[data-test-id=agreement]").click();
+        $("[class='button__text']").click();
+        $("[data-test-id=success-notification] .notification__content").waitUntil(visible,4000).shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateData()));
     }
 
     @Test
     void ifFillOutFormAgainWithChangedDay() {
-        DataGenerator.DataApplication data = new DataGenerator.DataApplication();
-        InfoClient.validValue();
+        $("[data-test-id=city] input").setValue(DataGenerator.DataApplication.generateClient("ru").getCity());
         $("[data-test-id=date] [value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
-        $("[data-test-id=date] [value]").setValue(data.getChangedData());
+        $("[data-test-id=date] [value]").setValue(DataGenerator.generateData());
+        $("[name='name']").setValue(DataGenerator.DataApplication.generateClient("ru").getName());
+        $("[name='phone']").setValue(DataGenerator.DataApplication.generateClient("ru").getPhoneNumber());
+        $("[data-test-id=agreement]").click();
+        $("[class='button__text']").click();
+        $("[data-test-id=success-notification] .notification__content").waitUntil(visible,4000).shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateData()));
+        $("[data-test-id=date] [value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+        $("[data-test-id=date] [value]").setValue(DataGenerator.anotherData());
         $("[class='button__text']").click();
         $("[data-test-id='replan-notification'] .notification__title").waitUntil(visible, 4000).shouldHave(exactText("Необходимо подтверждение"));
         $("[data-test-id='replan-notification'] [role=button] .button__text").click();
-        $(".notification_visible .notification__content").shouldHave(exactText("Встреча успешно запланирована на " + data.getChangedData()));
+        $(".notification_visible .notification__content").waitUntil(visible, 4000).shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.anotherData()));
     }
 
     @Test
     void ifFillOutFormAgainWithoutChangeDay() {
-        DataGenerator.DataApplication data = new DataGenerator.DataApplication();
-        InfoClient.validValue();
+        $("[data-test-id=city] input").setValue(DataGenerator.DataApplication.generateClient("ru").getCity());
+        $("[data-test-id=date] [value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+        $("[data-test-id=date] [value]").setValue(DataGenerator.generateData());
+        $("[name='name']").setValue(DataGenerator.DataApplication.generateClient("ru").getName());
+        $("[name='phone']").setValue(DataGenerator.DataApplication.generateClient("ru").getPhoneNumber());
+        $("[data-test-id=agreement]").click();
         $("[class='button__text']").click();
-        $("[data-test-id='replan-notification'] .notification__title").shouldHave(exactText("Встреча успешно запланирована на " + data.getData()));
+        $("[data-test-id=success-notification] .notification__content").waitUntil(visible,4000).shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateData()));
+        $("[class='button__text']").click();
+        $("[data-test-id='replan-notification'] .notification__title").waitUntil(visible, 4000).shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateData()));
+
     }
 }
