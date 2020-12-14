@@ -13,26 +13,20 @@ import java.util.Random;
 public class DataGenerator {
     private DataGenerator() {}
 
-
-
     public static class DataApplication {
         private DataApplication() {}
 
         public static InfoClient generateClient(String locale) {
             Faker faker = new Faker(new Locale("ru"));
             return new InfoClient(
-                    faker.address().city(),
+                    generateCity(),
                     faker.name().lastName() + " " + faker.name().firstName(),
                     faker.phoneNumber().phoneNumber()
-                    );
+            );
         }
     }
-    public static String generateData() {
-        return LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-    }
-
-    public static String anotherData() {
-        return LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    public static String generateData(int days) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     public static String generateCity() {
