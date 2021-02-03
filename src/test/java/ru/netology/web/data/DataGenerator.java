@@ -16,7 +16,7 @@ public class DataGenerator {
     public static class DataApplication {
         private DataApplication() {}
 
-        public static InfoClient generateClient(String locale) {
+        public static InfoClient generateClient() {
             Faker faker = new Faker(new Locale("ru"));
             return new InfoClient(
                     generateCity(),

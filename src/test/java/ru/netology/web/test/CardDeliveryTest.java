@@ -27,7 +27,7 @@ class CardDeliveryTest {
         SelenideLogger.removeListener("allure");
     }
 
-    InfoClient client = DataGenerator.DataApplication.generateClient("ru");
+    InfoClient client = DataGenerator.DataApplication.generateClient();
 
     @BeforeEach
     void setUp() {
