@@ -19,4 +19,4 @@ AppVeyor, Gradle, Sellenide, Lombok, Allure
 1. Запускаем тесты в IDEA ``gradlew clean test allureReport``, ``gradlew allureServe``
 
 ### Итог
-Сборка CI падает по причине обнаружения [бага](https://github.com/Kasparidi/CardOrderReschedule/issues)
+Уведомление "перепланирования даты встречи" в приложении заказа карты возникает даже если не изменять дату. [Issue](https://github.com/Kasparidi/CardOrderReschedule/issues)
