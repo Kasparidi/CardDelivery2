@@ -17,3 +17,6 @@ AppVeyor, Gradle, Sellenide, Lombok, Allure
 1. Запускаем приложение ``java -jar ./artifacts/app-card-delivery.jar``
 1. Открываем в браузере http://localhost:9999/
 1. Запускаем тесты в IDEA ``gradlew clean test allureReport``, ``gradlew allureServe``
+
+### Итог
+Сборка CI падает по причине обнаружения [бага](https://github.com/Kasparidi/CardOrderReschedule/issues)
