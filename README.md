@@ -5,14 +5,21 @@
 
 ### [TASK 1](https://github.com/netology-code/aqa-homeworks/tree/master/patterns)
 Авто-тесты новой функции формы заказа доставки карты.
-Тестируемая функциональность: если заполнить форму повторно теми же данными за исключением "Даты встречи", то система предложит перепланировать время встречи:
+Тестируемая функциональность: если заполнить форму повторно теми же данными за исключением "Даты встречи", 
+то система предложит перепланировать время встречи:
+
+![img.png](src/test/resources/img_1.png)
+
+После нажатия на кнопке "Перепланировать" произойдёт перепланирование встречи:
+
+![img.png](src/test/resources/img_2.png)
 
 ### TASK 2
 Автоматизированное тестирование функции перепланирования встречи с использованием фреймфворка Allure.
 
 ### TOOLS
 Page Object  
-AppVeyor, Gradle, Sellenide, Lombok, Allure
+AppVeyor, Gradle, Selenide, Lombok, Allure, Faker
 
 **CI**  
 [![Build status](https://ci.appveyor.com/api/projects/status/y5cp6ib55c3bdftd?svg=true)](https://ci.appveyor.com/project/Kasparidi/carddelivery2)
