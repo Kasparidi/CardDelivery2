@@ -14,7 +14,7 @@
 
 ![img.png](src/test/resources/img_2.png)
 
-### TASK 2
+### [TASK 2](https://github.com/netology-code/aqa-homeworks/tree/master/reporting)
 Автоматизированное тестирование функции перепланирования встречи с использованием фреймфворка Allure.
 
 ### TOOLS
